@@ -1,14 +1,19 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, LoginManager
 from forms import *
+import os
+from dotenv import load_dotenv, find_dotenv
 
+
+load_dotenv(find_dotenv())
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'log_in'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
+
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URI")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = 'wQmtAf4w3LQLM995WxkZwFYLUpErOFqc'
+app.config['SECRET_KEY'] = os.getenv("APP_SECRET_KEY")
 db = SQLAlchemy(app)
 
 

@@ -8,8 +8,8 @@ from forms import *
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
-SENDER_EMAIL = "test.tamizh12@gmail.com"
-APP_PASSWORD = "rnfsonjdjzanrwym"
+SENDER_EMAIL = os.getenv("SENDER_MAIL")
+APP_PASSWORD = os.getenv("MAIL_APP_PASSWORD")
 GMAIL_SMTP = "smtp.gmail.com"
 
 
