@@ -11,7 +11,7 @@ login_manager.init_app(app)
 login_manager.login_view = 'log_in'
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URI")
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///posts.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.getenv("APP_SECRET_KEY")
 db = SQLAlchemy(app)
