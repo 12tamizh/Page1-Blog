@@ -12,6 +12,9 @@ SENDER_EMAIL = os.getenv("SENDER_MAIL")
 APP_PASSWORD = os.getenv("MAIL_APP_PASSWORD")
 GMAIL_SMTP = "smtp.gmail.com"
 
+# with app.app_context():
+#     db.create_all()
+
 
 # LOADING USER OBJECT
 @login_manager.user_loader
@@ -34,7 +37,7 @@ def admin_only(f):
 @app.route("/")
 def home():
     with app.app_context():
-        home_post_objects = db.session.execute(db.select(PostData)).scalars().all()
+        home_post_objects = db.session.execute(db.select(PostData)).scalars().all()[::-1]
     return render_template("index.html", top_posts=home_post_objects[:3], logged_in=current_user.is_authenticated)
 
 
@@ -159,7 +162,7 @@ def post_content(post_id):
 @login_required
 def all_posts():
     with app.app_context():
-        all_post_objects = db.session.execute(db.select(PostData)).scalars().all()
+        all_post_objects = db.session.execute(db.select(PostData)).scalars().all()[::-1]
     return render_template("all_posts.html", all_posts_objs=all_post_objects, logged_in=current_user.is_authenticated, current_user_id=current_user.id)
 
 

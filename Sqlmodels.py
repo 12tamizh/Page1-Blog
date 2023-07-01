@@ -50,5 +50,4 @@ class Comments(db.Model):
     comment = db.Column(db.String(500), nullable=False)
 
 
-# with app.app_context():
-#     db.create_all()
+

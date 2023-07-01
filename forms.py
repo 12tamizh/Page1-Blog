@@ -14,7 +14,6 @@ gravatar = Gravatar(app, size=20, rating='g', default='retro', force_default=Fal
 
 
 class MakePostForm(FlaskForm):
-    name = StringField('Name', validators=[DataRequired()])
     title = StringField('Title', validators=[DataRequired()])
     subtitle = StringField('Subtitle', validators=[DataRequired()])
     img_url = URLField('Image Url', validators=[DataRequired()])
